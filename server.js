@@ -541,6 +541,7 @@ function decorate(room) {
         bowling: p.bowling || 50,
         fact: p.fact || "",
         stats: p.stats || null,
+        imageUrl: p.imageUrl || "",
         price: entry.price
       };
     });

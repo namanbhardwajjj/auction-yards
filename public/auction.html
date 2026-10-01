@@ -727,6 +727,53 @@
     }
   }
 
+  function renderPlayerStatsGrid(p) {
+    const s = p.stats || {};
+    const isBowler = p.role === "bowler";
+    const isAllRounder = p.role === "all_rounder";
+
+    if (isBowler) {
+      return (
+        "<div class='stats-grid'>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.matches || "—") + "</div><div class='stat-pill-lbl'>Matches</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--emerald-turf);'>" + (s.wickets || 0) + "</div><div class='stat-pill-lbl'>Wickets</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.economy || "—") + "</div><div class='stat-pill-lbl'>Economy</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.averageBowl || s.average || "—") + "</div><div class='stat-pill-lbl'>Bowl Avg</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--gold-sun);'>" + (s.bestBowling || "—") + "</div><div class='stat-pill-lbl'>Best Figures</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.runs || 0) + "</div><div class='stat-pill-lbl'>Runs</div></div>" +
+        "</div>"
+      );
+    }
+
+    if (isAllRounder) {
+      return (
+        "<div class='stats-grid'>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.matches || "—") + "</div><div class='stat-pill-lbl'>Matches</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--gold-sun);'>" + (s.runs || 0) + "</div><div class='stat-pill-lbl'>Runs</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.strikeRate || "—") + "</div><div class='stat-pill-lbl'>Bat SR</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--emerald-turf);'>" + (s.wickets || 0) + "</div><div class='stat-pill-lbl'>Wickets</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.economy || "—") + "</div><div class='stat-pill-lbl'>Economy</div></div>" +
+          "<div class='stat-pill'><div class='stat-pill-val'>" + (s.bestBowling || s.highestScore || "—") + "</div><div class='stat-pill-lbl'>Best Mark</div></div>" +
+        "</div>"
+      );
+    }
+
+    const milestones = (s.centuries !== undefined && s.fifties !== undefined)
+      ? `${s.centuries} / ${s.fifties}`
+      : (s.fifties !== undefined ? `${s.fifties}` : "—");
+
+    return (
+      "<div class='stats-grid'>" +
+        "<div class='stat-pill'><div class='stat-pill-val'>" + (s.matches || "—") + "</div><div class='stat-pill-lbl'>Matches</div></div>" +
+        "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--gold-sun);'>" + (s.runs || 0) + "</div><div class='stat-pill-lbl'>Runs</div></div>" +
+        "<div class='stat-pill'><div class='stat-pill-val' style='color:var(--cyan-neon);'>" + (s.highestScore || "—") + "</div><div class='stat-pill-lbl'>High Score</div></div>" +
+        "<div class='stat-pill'><div class='stat-pill-val'>" + (s.strikeRate || "—") + "</div><div class='stat-pill-lbl'>Strike Rate</div></div>" +
+        "<div class='stat-pill'><div class='stat-pill-val'>" + (s.average || "—") + "</div><div class='stat-pill-lbl'>Average</div></div>" +
+        "<div class='stat-pill'><div class='stat-pill-val' style='font-size:18px;'>" + milestones + "</div><div class='stat-pill-lbl'>100s / 50s</div></div>" +
+      "</div>"
+    );
+  }
+
   /* ================= RENDER LOGIC ================= */
   function render() {
     if (!room) return;
@@ -781,7 +828,6 @@
       ribbon.textContent = a.phase === "RTM_PENDING" ? "RTM CARD ACTIVE" : (a.phase === "BETWEEN_LOTS" ? "PREPARING LOT" : "BIDDING LIVE");
       ribbon.className = "ribbon" + (a.phase === "RTM_PENDING" ? " rtm" : "");
 
-      const pStats = curPlayer.stats || {};
       const subRoleLabel = curPlayer.subRole ? curPlayer.subRole.replace(/_/g, " ").toUpperCase() : "";
       const isMarquee = (curPlayer.rating || 0) >= 90 || curPlayer.isLegend;
 
@@ -809,14 +855,7 @@
 
             (curPlayer.fact ? "<div class='fact-box'><span>💡</span><div>" + curPlayer.fact + "</div></div>" : "") +
 
-            "<div class='stats-grid'>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.matches || "—") + "</div><div class='stat-pill-lbl'>Matches</div></div>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.runs || 0) + "</div><div class='stat-pill-lbl'>Runs</div></div>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.strikeRate || "—") + "</div><div class='stat-pill-lbl'>Strike Rate</div></div>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.average || "—") + "</div><div class='stat-pill-lbl'>Average</div></div>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.wickets || 0) + "</div><div class='stat-pill-lbl'>Wickets</div></div>" +
-              "<div class='stat-pill'><div class='stat-pill-val'>" + (pStats.economy || "—") + "</div><div class='stat-pill-lbl'>Economy</div></div>" +
-            "</div>" +
+            renderPlayerStatsGrid(curPlayer) +
           "</div>" +
         "</div>";
     }
@@ -936,9 +975,12 @@
     listEl.innerHTML = squad.map(function (p) {
       return (
         "<div style='display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:rgba(5,9,22,0.7); border-radius:12px; border:1px solid var(--line); font-size:13px;'>" +
-          "<div>" +
-            "<span style='font-weight:800;'>" + p.name + "</span> " +
-            "<span style='color:var(--dim); font-size:11px; font-family:var(--font-tech);'>" + (p.overseas ? "✈️" : "") + " " + p.role.replace(/_/g, " ") + "</span>" +
+          "<div style='display:flex; align-items:center; gap:10px;'>" +
+            (p.imageUrl ? "<img src='" + p.imageUrl + "' style='width:34px; height:34px; border-radius:50%; object-fit:cover; border:1.5px solid var(--cyan-neon); flex-shrink:0;' onerror=\"this.style.display='none'\" />" : "") +
+            "<div>" +
+              "<div style='font-weight:800;'>" + p.name + "</div>" +
+              "<div style='color:var(--dim); font-size:11px; font-family:var(--font-tech);'>" + (p.overseas ? "✈️ " : "🇮🇳 ") + p.role.replace(/_/g, " ") + "</div>" +
+            "</div>" +
           "</div>" +
           "<div style='font-family:var(--font-display); font-size:18px; color:var(--gold-sun);'>" + money(p.price) + "</div>" +
         "</div>"

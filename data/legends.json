@@ -23,7 +23,7 @@
       "economy": 0
     },
     "fact": "Orange Cap winner in 2010 (618 runs) and the iconic cornerstone of Mumbai Indians.",
-    "imageUrl": "/img/legends/sachin.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_cricket_legend_Sachin_Tendulkar_at_the_Oval_Maidan_in_Mumbai_During_the_Duke_and_Duchess_of_Cambridge_Visit%2826271019082%29.jpg/500px-The_cricket_legend_Sachin_Tendulkar_at_the_Oval_Maidan_in_Mumbai_During_the_Duke_and_Duchess_of_Cambridge_Visit%2826271019082%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -50,7 +50,7 @@
       "economy": 0
     },
     "fact": "5-time IPL champion captain, greatest finisher and sharpest tactical mind in T20 history.",
-    "imageUrl": "/img/legends/dhoni.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/MS_Dhoni_%28Prabhav_%2723_-_RiGI_2023%29.jpg/500px-MS_Dhoni_%28Prabhav_%2723_-_RiGI_2023%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -77,7 +77,7 @@
       "economy": 7.9
     },
     "fact": "Holds record for highest individual T20 score (175* off 66 balls) and most sixes in IPL (357).",
-    "imageUrl": "/img/legends/gayle.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Two_views_of_Chris_Gayle_%2848020785077%29.jpg/500px-Two_views_of_Chris_Gayle_%2848020785077%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -104,7 +104,7 @@
       "economy": 0
     },
     "fact": "Mr. 360, legendary for tearing apart any bowling attack in death overs with unimaginable range.",
-    "imageUrl": "/img/legends/abde.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/AB_de_Villiers_2.jpg/500px-AB_de_Villiers_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -123,14 +123,14 @@
       "matches": 122,
       "runs": 88,
       "average": 5.86,
-      "strikeRate": 88.0,
+      "strikeRate": 88,
       "wickets": 170,
       "economy": 7.14,
       "bowlingAvg": 19.8,
       "bestBowling": "5/13"
     },
     "fact": "4-time champion with MI; defended 1 run off the final ball in 2019 IPL final with an iconic yorker.",
-    "imageUrl": "/img/legends/malinga.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Lasith_Malinga_tossing_a_cricket_ball_at_practice.jpg/500px-Lasith_Malinga_tossing_a_cricket_ball_at_practice.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -156,7 +156,7 @@
       "bestBowling": "4/21"
     },
     "fact": "Inspirational captain-coach who led underdog Rajasthan Royals to the inaugural IPL championship in 2008.",
-    "imageUrl": "/img/legends/warne.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Shane_Warne_February_2015.jpg/500px-Shane_Warne_February_2015.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 1 • Immortal Legends"
   },
   {
@@ -183,7 +183,7 @@
       "economy": 7.39
     },
     "fact": "'Mr. IPL' — scored 400+ runs in 9 consecutive seasons; blazed 87 off 25 balls against KXIP in 2014.",
-    "imageUrl": "/img/legends/raina.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Suresh_Raina_grace_the_%27Salaam_Sachin%27_conclave.jpg/500px-Suresh_Raina_grace_the_%27Salaam_Sachin%27_conclave.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -211,7 +211,7 @@
       "bestBowling": "4/29"
     },
     "fact": "World Cup hero and 2-time IPL hat-trick taker; fetched record ₹16 Cr auction bid in 2015.",
-    "imageUrl": "/img/legends/yuvraj.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Yuvraj_Singh_appointed_as_Ulysse_Nardin_watch_brand_ambassador.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -238,7 +238,7 @@
       "economy": 0
     },
     "fact": "Led KKR to two IPL trophies (2012, 2014) as a fearless captain and elite spin player.",
-    "imageUrl": "/img/legends/gambhir.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Gautam_Gambhir_3.jpg/500px-Gautam_Gambhir_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -264,7 +264,7 @@
       "bestBowling": "4/22"
     },
     "fact": "2-time Purple Cap winner (32 wickets in 2013) and master of the dipping slower ball.",
-    "imageUrl": "/img/legends/bravo.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Bravo_at_IIFA_2017_Green_Carpet.jpg/500px-Bravo_at_IIFA_2017_Green_Carpet.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -291,7 +291,7 @@
       "economy": 7.93
     },
     "fact": "2-time IPL Player of the Tournament; smashed 117* on one leg in the 2018 final to win CSK the trophy.",
-    "imageUrl": "/img/legends/watson.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/SHANE_WATSON_%2811705862116%29.jpg/500px-SHANE_WATSON_%2811705862116%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -318,7 +318,7 @@
       "economy": 9.1
     },
     "fact": "Highest career strike rate among 2500+ run scorers of his era (155.44); blistered 122 in 2014 Qualifier 2.",
-    "imageUrl": "/img/legends/sehwag.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Virender_Sehwag_at_the_NDTV_Marks_for_Sports_event_13.jpg/500px-Virender_Sehwag_at_the_NDTV_Marks_for_Sports_event_13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -337,14 +337,14 @@
       "matches": 95,
       "runs": 167,
       "average": 6.95,
-      "strikeRate": 105.0,
+      "strikeRate": 105,
       "wickets": 97,
       "economy": 6.91,
       "bowlingAvg": 25.85,
       "bestBowling": "3/8"
     },
     "fact": "Possessed a phenomenal economy rate of 6.91 despite bowling high-pace outswingers in powerplay & death.",
-    "imageUrl": "/img/legends/steyn.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Dale_Steyn_YM.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -372,7 +372,7 @@
       "bowlingAvg": 35.27
     },
     "fact": "All-time legendary all-rounder who played the match-winning 69 in the 2012 IPL final for KKR.",
-    "imageUrl": "/img/legends/kallis.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Jacques_Kallis_6.jpg/500px-Jacques_Kallis_6.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -399,7 +399,7 @@
       "economy": 0
     },
     "fact": "Captained Deccan Chargers to the 2009 title; famously bowled 1 ball in his final IPL match and took a wicket!",
-    "imageUrl": "/img/legends/gilchrist.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Adam_Gilchrist_of_Australia_%28cropped%29.jpg/500px-Adam_Gilchrist_of_Australia_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 2 • Match-Winning Icons"
   },
   {
@@ -426,7 +426,7 @@
       "economy": 0
     },
     "fact": "Set the IPL alight on night one (18 April 2008) with an unforgettable 158* off 73 balls for KKR.",
-    "imageUrl": "/img/legends/mccullum.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Brendon_McCullum_ONZM_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -452,7 +452,7 @@
       "bestBowling": "3/11"
     },
     "fact": "World record 800-wicket test maestro; achieved astonishing 6.67 economy over 66 IPL matches.",
-    "imageUrl": "/img/legends/murali.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Photograph_of_Muttiah_Muralitharan.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -478,7 +478,7 @@
       "bestBowling": "3/15"
     },
     "fact": "Thunderbolt pacer who terrorized top orders with 150+ km/h outswing and won the 2012 IPL with KKR.",
-    "imageUrl": "/img/legends/lee.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Brett_lee_closeup2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -504,7 +504,7 @@
       "bestBowling": "5/5"
     },
     "fact": "Recorded mind-boggling figures of 5 wickets for 5 runs against RR; led RCB to the 2009 IPL final.",
-    "imageUrl": "/img/legends/kumble.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/de/Anil_Kumble_%281%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -530,7 +530,7 @@
       "bestBowling": "4/17"
     },
     "fact": "Master of reverse swing and knuckle balls; spearhead of India's 2011 World Cup victory.",
-    "imageUrl": "/img/legends/zaheer.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Zaheer_Khan_at_the_CPAA_show_2018_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -556,7 +556,7 @@
       "bestBowling": "5/18"
     },
     "fact": "4-time IPL champion (3 with MI, 1 with CSK) with 150 wickets at an elite 7.07 economy rate.",
-    "imageUrl": "/img/legends/harbhajan.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Shri_Harbhajan_Singh_2015.jpg/500px-Shri_Harbhajan_Singh_2015.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -583,7 +583,7 @@
       "economy": 0
     },
     "fact": "Orange Cap winner in 2009 with 572 runs; revolutionized powerplay hitting with the Mongoose bat.",
-    "imageUrl": "/img/legends/hayden.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Matthew_Hayden_Image.jpg/500px-Matthew_Hayden_Image.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -610,7 +610,7 @@
       "economy": 0
     },
     "fact": "'Mr. Cricket' — won Orange Cap in 2013 with 733 runs; scored a century on his IPL debut for CSK.",
-    "imageUrl": "/img/legends/hussey.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Michael_Hussey_2022.jpg/500px-Michael_Hussey_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 3 • World Champions & Pioneers"
   },
   {
@@ -628,7 +628,7 @@
     "stats": {
       "matches": 14,
       "runs": 4,
-      "average": 4.0,
+      "average": 4,
       "strikeRate": 57.14,
       "wickets": 12,
       "economy": 6.61,
@@ -636,7 +636,7 @@
       "bestBowling": "4/29"
     },
     "fact": "The metronome of bowling accuracy; conceded merely 6.61 runs per over for Delhi in 2008.",
-    "imageUrl": "/img/legends/mcgrath.png",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Glenn_McGrath_Portrait%2C_2011%2C_jjron.jpg/500px-Glenn_McGrath_Portrait%2C_2011%2C_jjron.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "set": "Set 3 • World Champions & Pioneers"
   }
 ]
