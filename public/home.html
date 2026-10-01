@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Auction Yards — Lobby</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+
+<style>
+  .hero-panel {
+    margin-top: 22px;
+    padding: 46px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-panel::after {
+    content: "";
+    position: absolute;
+    top: -70%;
+    left: 50%;
+    width: 640px;
+    height: 320px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(34, 211, 238, 0.14), transparent);
+    pointer-events: none;
+  }
+
+  .hero-title { font-size: 42px; font-weight: 800; line-height: 1.1; }
+
+  .hero-title span {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-tagline {
+    color: var(--dim);
+    margin-top: 12px;
+    font-size: 15px;
+    font-style: italic;
+    min-height: 22px;
+    transition: opacity 0.4s ease;
+  }
+
+  .stat-row { display: flex; justify-content: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+  .stat-chip {
+    min-width: 160px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(3, 6, 16, 0.6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .stat-chip:hover { transform: translateY(-3px); border-color: rgba(34, 211, 238, 0.45); }
+
+  .stat-value { font-family: "Sora", sans-serif; font-size: 28px; font-weight: 800; }
+  .stat-value.g { color: var(--green2); }
+  .stat-value.c { color: var(--cyan); }
+  .stat-value.y { color: var(--gold2); }
+
+  .stat-label { color: var(--dim); font-size: 11px; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  .join-code-box {
+    border: 1px dashed var(--line-strong);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    background: rgba(3, 6, 16, 0.5);
+  }
+
+  .join-code-title { font-size: 13px; font-weight: 700; color: var(--gold2); margin-bottom: 10px; letter-spacing: 0.4px; }
+
+  .join-code-row { display: flex; gap: 10px; }
+
+  .join-code-row input {
+    flex: 1;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  .toolbar input { flex: 1; min-width: 200px; }
+
+  .filter-tabs { display: flex; gap: 8px; }
+  .filter-tabs button { padding: 9px 14px; font-size: 13px; border-radius: 999px; }
+
+  .filter-tabs button.active {
+    background: var(--grad-primary);
+    color: #02241c;
+    border: none;
+  }
+
+  .room-card {
+    position: relative;
+    border: 1px solid var(--line);
+    background: rgba(3, 6, 16, 0.6);
+    border-radius: 18px;
+    padding: 18px 18px 18px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    animation: rise 0.4s ease both;
+  }
+
+  .room-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--grad-primary);
+  }
+
+  .room-card.live::before { background: var(--grad-gold); }
+
+  .room-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(52, 211, 153, 0.5);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+  }
+
+  .room-title { font-size: 17px; font-weight: 700; font-family: "Sora", sans-serif; }
+  .room-meta { color: var(--dim); font-size: 13px; margin-top: 5px; }
+
+  .room-code-line {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 1px;
+  }
+
+  .room-code-line strong {
+    color: var(--gold2);
+    font-family: "Sora", sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+  }
+
+  .capacity-wrap { margin-top: 10px; width: 230px; max-width: 100%; }
+
+  .capacity-bar { height: 6px; border-radius: 999px; background: rgba(51, 65, 85, 0.7); overflow: hidden; }
+
+  .capacity-fill { height: 100%; border-radius: 999px; background: var(--grad-primary); transition: width 0.4s ease; }
+
+  .capacity-label { font-size: 11px; color: var(--dim); margin-top: 4px; }
+
+  .room-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; min-width: 130px; }
+
+  .create-summary {
+    margin-top: 14px;
+    padding: 13px 15px;
+    border-radius: 14px;
+    border: 1px dashed var(--line-strong);
+    color: var(--dim);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .create-summary strong { color: var(--text); }
+
+  .guide-step { display: flex; gap: 12px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid rgba(51, 65, 85, 0.35); }
+  .guide-step:last-child { border-bottom: none; }
+
+  .guide-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13px;
+    color: #02241c;
+    background: var(--grad-primary);
+  }
+
+  .guide-text { font-size: 13px; color: var(--dim); line-height: 1.5; }
+  .guide-text strong { color: var(--text); }
+
+  @media (max-width: 700px) {
+    .hero-title { font-size: 30px; }
+    .room-card { flex-direction: column; align-items: stretch; }
+    .capacity-wrap { width: 100%; }
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- ================= NAVBAR ================= -->
+  <div class="navbar">
+    <div>
+      <div class="brand">AUCTION YARDS</div>
+      <div class="tagline">Where every bid makes history.</div>
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <button id="sfxBtn" title="Sound effects">🔊</button>
+      <button id="musicBtn" title="Music">🎵</button>
+
+      <div class="user-chip">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <span id="username"></span>
+      </div>
+
+      <button id="logoutButton" class="ghost">Logout</button>
+    </div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <div class="panel hero-panel">
+    <h1 class="hero-title">Welcome to <span>the Yards</span></h1>
+    <div class="hero-tagline" id="heroTagline">Ten franchises. One purse. Zero mercy.</div>
+
+    <div class="stat-row">
+      <div class="stat-chip">
+        <div class="stat-value g" id="statRooms">0</div>
+        <div class="stat-label">Open Rooms</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-value c" id="statLive">0</div>
+        <div class="stat-label">Live Auctions</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-value y" id="statPlayers">0</div>
+        <div class="stat-label">Owners Seated</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN GRID ================= -->
+  <div class="grid-2">
+
+    <div class="panel">
+      <!-- ---------- MULTI-SPORT PLATFORM SHOWCASE ---------- -->
+      <div style="margin-bottom:18px; padding:14px 16px; border-radius:14px; background:linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(139, 92, 246, 0.08)); border:1px solid rgba(34, 211, 238, 0.25); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:24px;">🌐</span>
+          <div>
+            <div style="font-family:'Sora',sans-serif; font-size:13px; font-weight:800; color:var(--cyan);">MULTI-SPORT AUCTION PLATFORM</div>
+            <div style="font-size:12px; color:var(--dim); margin-top:2px;">🏏 Cricket IPL (Active) • ⚽ Football EPL (Ready) • 🏀 NBA Basketball (Ready)</div>
+          </div>
+        </div>
+        <span class="badge" style="background:rgba(16, 185, 129, 0.2); color:var(--green2); border:1px solid rgba(16, 185, 129, 0.4); font-size:11px;">v2.0 Multi-Sport</span>
+      </div>
+
+      <h2 style="margin-bottom:14px;">Active Rooms</h2>
+
+      <!-- ---------- JOIN WITH CODE ---------- -->
+      <div class="join-code-box">
+        <div class="join-code-title">GOT A ROOM CODE? JOIN INSTANTLY</div>
+        <div class="join-code-row">
+          <input id="roomCodeInput" type="text" placeholder="ENTER CODE" maxlength="8" autocomplete="off" />
+          <button id="joinCodeBtn" class="gold">Join</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input id="searchInput" type="text" placeholder="Search rooms or hosts..." autocomplete="off" />
+        <div class="filter-tabs">
+          <button id="filterAll" class="active">All</button>
+          <button id="filterSetup">Setup</button>
+          <button id="filterLive">Live</button>
+        </div>
+      </div>
+
+      <div id="roomList"><div class="empty">Loading rooms...</div></div>
+    </div>
+
+    <div class="side">
+
+      <div class="panel">
+        <h2 style="margin-bottom:14px;">Create Room</h2>
+
+        <form id="createRoomForm" style="display:flex; flex-direction:column; gap:12px;">
+          <div>
+            <label>Room Name</label>
+            <input id="roomName" maxlength="40" placeholder="Friday Night Auction" autocomplete="off" />
+          </div>
+
+          <div>
+            <label>Auction Mode</label>
+            <select id="auctionMode">
+              <option value="ZERO" selected>✨ Start From Zero (Mega Auction — Clean Slate, ₹120 Cr)</option>
+              <option value="RETENTION_2025">🔥 2025 Real Retentions (Authentic Retained Cores, RTMs & Purses)</option>
+              <option value="LEGENDS">👑 Legends Auction (All-Time Greats: Tendulkar, Dhoni, Warne)</option>
+            </select>
+          </div>
+
+          <div>
+            <label>IPL Teams In Play (2–10)</label>
+            <select id="teamCount">
+              <option value="2">2 Teams (Head-to-Head)</option>
+              <option value="3">3 Teams</option>
+              <option value="4">4 Teams (Classic Semi-Finals)</option>
+              <option value="5">5 Teams</option>
+              <option value="6">6 Teams</option>
+              <option value="7">7 Teams</option>
+              <option value="8">8 Teams</option>
+              <option value="9">9 Teams</option>
+              <option value="10" selected>10 Teams (Full IPL Roster)</option>
+            </select>
+          </div>
+
+          <label class="check" style="background: rgba(16, 185, 129, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <input type="checkbox" id="botsEnabled" checked />
+            <span>🤖 <strong>Fill empty slots with AI Bots</strong> (Smart CPU franchises)</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" id="allowCustomTeams" />
+            Allow extra custom user teams beyond IPL slots
+          </label>
+
+          <button class="primary" id="createRoomButton" type="submit">Create Room</button>
+        </form>
+
+        <div id="createFormError" class="error"></div>
+        <div class="create-summary" id="createSummary"></div>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin-bottom:10px;">How It Works</h2>
+
+        <div class="guide-step">
+          <div class="guide-num">1</div>
+          <div class="guide-text"><strong>Create a room.</strong> You get a unique room code and invite link.</div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">2</div>
+          <div class="guide-text"><strong>Share the code.</strong> Friends join with the code or the link.</div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">3</div>
+          <div class="guide-text"><strong>Claim a franchise.</strong> Pick an IPL team before the auction begins.</div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">4</div>
+          <div class="guide-text"><strong>Bid in real time.</strong> Marquee to uncapped — manage purse and slots.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Auction Yards • Bid Bold. Build Legends. • Owner: <strong>NamanBhardwaj</strong></footer>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="/sound.js"></script>
+<script>
+  const rawUser = localStorage.getItem("auctionyards_user");
+  if (!rawUser) window.location.href = "/";
+
+  let user;
+  try { user = JSON.parse(rawUser); } catch (e) { window.location.href = "/"; }
+  if (!user || !user.id || !user.name) window.location.href = "/";
+
+  const roomListEl = document.getElementById("roomList");
+  const searchInput = document.getElementById("searchInput");
+  const toastStack = document.getElementById("toastStack");
+  const createSummary = document.getElementById("createSummary");
+  const codeInput = document.getElementById("roomCodeInput");
+
+  let allRooms = [];
+  let knownRoomIds = new Set();
+  let firstLoad = true;
+  let activeFilter = "ALL";
+
+  document.getElementById("username").textContent = user.name;
+  document.getElementById("userAvatar").textContent = user.name.charAt(0).toUpperCase();
+
+  document.getElementById("sfxBtn").onclick = function () {
+    this.textContent = Sound.toggleSfx() ? "🔊" : "🔇";
+  };
+
+  document.getElementById("musicBtn").onclick = function () {
+    Sound.unlock();
+    this.textContent = Sound.toggleMusic() ? "🎶" : "🎵";
+  };
+
+  document.getElementById("logoutButton").onclick = function () {
+    localStorage.removeItem("auctionyards_user");
+    window.location.href = "/";
+  };
+
+  /* ---------- helpers ---------- */
+
+  function showToast(message, type) {
+    const toast = document.createElement("div");
+    toast.className = "toast " + (type || "info");
+    toast.textContent = message;
+    toastStack.appendChild(toast);
+    setTimeout(function () {
+      toast.style.transition = "opacity 0.3s ease";
+      toast.style.opacity = "0";
+      setTimeout(function () { toast.remove(); }, 320);
+    }, 3200);
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function formatCode(code) {
+    if (!code) return "—";
+    const c = String(code);
+    return c.length === 6 ? c.slice(0, 3) + "-" + c.slice(3) : c;
+  }
+
+  function modeLabel(mode) {
+    if (mode === "MINI") return "Mini";
+    if (mode === "RTM") return "RTM";
+    return "Full";
+  }
+
+  function inviteLink(room) {
+    return window.location.origin + "/room.html?code=" + encodeURIComponent(room.code);
+  }
+
+  function fallbackCopy(text, okMsg) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+      showToast(okMsg, "success");
+    } catch (e) {
+      showToast("Copy failed", "error");
+    }
+    ta.remove();
+  }
+
+  function copyText(text, okMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text)
+        .then(function () { showToast(okMsg, "success"); })
+        .catch(function () { fallbackCopy(text, okMsg); });
+    } else {
+      fallbackCopy(text, okMsg);
+    }
+  }
+
+  /* ---------- join with code ---------- */
+
+  async function joinByCode() {
+    const code = codeInput.value.trim();
+    if (!code) return;
+
+    try {
+      const res = await fetch("/api/rooms/by-code/" + encodeURIComponent(code));
+      const room = await res.json().catch(function () { return {}; });
+
+      if (!res.ok) throw new Error(room.error || "No room found with that code.");
+
+      Sound.next();
+      window.location.href = "/room.html?id=" + encodeURIComponent(room.id);
+    } catch (e) {
+      showToast(e.message, "error");
+      Sound.error();
+    }
+  }
+
+  document.getElementById("joinCodeBtn").onclick = joinByCode;
+
+  codeInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") joinByCode();
+  });
+
+  /* ---------- rotating taglines ---------- */
+
+  const TAGLINES = [
+    "Ten franchises. One purse. Zero mercy.",
+    "Where every bid makes history.",
+    "From marquee to uncapped — own the yard.",
+    "The hammer waits for no one.",
+    "Built by NamanBhardwaj. Ruled by you."
+  ];
+
+  let tagIndex = 0;
+  const tagEl = document.getElementById("heroTagline");
+
+  setInterval(function () {
+    tagEl.style.opacity = "0";
+    setTimeout(function () {
+      tagIndex = (tagIndex + 1) % TAGLINES.length;
+      tagEl.textContent = TAGLINES[tagIndex];
+      tagEl.style.opacity = "1";
+    }, 400);
+  }, 5000);
+
+  /* ---------- filters ---------- */
+
+  function setFilter(filter, btn) {
+    activeFilter = filter;
+    ["filterAll", "filterSetup", "filterLive"].forEach(function (id) {
+      document.getElementById(id).classList.remove("active");
+    });
+    btn.classList.add("active");
+    renderRooms();
+  }
+
+  document.getElementById("filterAll").onclick = function () { setFilter("ALL", this); };
+  document.getElementById("filterSetup").onclick = function () { setFilter("SETUP", this); };
+  document.getElementById("filterLive").onclick = function () { setFilter("LIVE", this); };
+
+  searchInput.addEventListener("input", renderRooms);
+
+  /* ---------- create summary ---------- */
+
+  function updateSummary() {
+    const name = document.getElementById("roomName").value.trim() || "Untitled Room";
+    const mode = document.getElementById("auctionMode").value;
+    const modeLabelText = mode === "LEGENDS" ? "Legends Auction" : (mode === "RETENTION_2025" ? "2025 Retentions" : "Start From Zero");
+    const bots = document.getElementById("botsEnabled").checked ? "Enabled (CPU fills empty)" : "Disabled";
+
+    createSummary.innerHTML =
+      "Creating <strong>" + escapeHtml(name) + "</strong><br/>" +
+      "Franchises: <strong>" + document.getElementById("teamCount").value + " Teams</strong> • Mode: <strong>" + modeLabelText + "</strong><br/>" +
+      "AI Bots: <strong>" + bots + "</strong>";
+  }
+
+  document.getElementById("roomName").addEventListener("input", updateSummary);
+  document.getElementById("teamCount").addEventListener("change", updateSummary);
+  document.getElementById("allowCustomTeams").addEventListener("change", updateSummary);
+  document.getElementById("auctionMode").addEventListener("change", updateSummary);
+  document.getElementById("botsEnabled").addEventListener("change", updateSummary);
+  updateSummary();
+
+  /* ---------- load + render ---------- */
+
+  async function loadRooms() {
+    try {
+      const res = await fetch("/api/rooms");
+      const rooms = await res.json();
+      allRooms = Array.isArray(rooms) ? rooms : [];
+
+      if (!firstLoad) {
+        allRooms.forEach(function (r) {
+          if (!knownRoomIds.has(r.id)) {
+            knownRoomIds.add(r.id);
+            Sound.next();
+            showToast('New room: "' + r.name + '" — Code ' + formatCode(r.code), "info");
+          }
+        });
+      } else {
+        allRooms.forEach(function (r) { knownRoomIds.add(r.id); });
+        firstLoad = false;
+      }
+
+      document.getElementById("statRooms").textContent = allRooms.length;
+      document.getElementById("statLive").textContent =
+        allRooms.filter(function (r) { return r.status === "LIVE"; }).length;
+      document.getElementById("statPlayers").textContent =
+        allRooms.reduce(function (s, r) { return s + (r.claims || []).length; }, 0);
+
+      renderRooms();
+    } catch (e) {
+      roomListEl.innerHTML = '<div class="empty">Could not load rooms. Is the server running?</div>';
+    }
+  }
+
+  function renderRooms() {
+    const term = searchInput.value.trim().toLowerCase();
+
+    let rooms = allRooms.slice();
+
+    if (activeFilter !== "ALL") {
+      rooms = rooms.filter(function (r) { return r.status === activeFilter; });
+    }
+
+    if (term) {
+      rooms = rooms.filter(function (r) {
+        return r.name.toLowerCase().includes(term) || r.createdBy.toLowerCase().includes(term);
+      });
+    }
+
+    if (rooms.length === 0) {
+      roomListEl.innerHTML =
+        '<div class="empty">' +
+        (allRooms.length === 0 ? "No rooms yet. Create the first Auction Yards room." : "No rooms match your search.") +
+        "</div>";
+      return;
+    }
+
+    roomListEl.innerHTML = "";
+
+    rooms.forEach(function (room, index) {
+      const joined = (room.claims || []).length;
+      const pct = Math.min(100, Math.round((joined / room.teamCount) * 100));
+      const isLive = room.status === "LIVE";
+
+      const card = document.createElement("div");
+      card.className = "room-card" + (isLive ? " live" : "");
+
+      card.innerHTML =
+        "<div style='flex:1;'>" +
+          "<div class='room-title'>" + (isLive ? "<span class='live-dot'></span>" : "") + escapeHtml(room.name) + "</div>" +
+          "<div class='room-meta'>Host: " + escapeHtml(room.createdBy) +
+          " • <span class='badge " + (isLive ? "gold" : room.status === "SETUP" ? "green" : "dim") + "'>" + room.status + "</span>" +
+          " • <span class='badge violet'>" + modeLabel(room.mode) + "</span></div>" +
+          "<div class='room-code-line'>CODE <strong>" + formatCode(room.code) + "</strong></div>" +
+          "<div class='capacity-wrap'><div class='capacity-bar'><div class='capacity-fill' style='width:" + pct + "%;'></div></div>" +
+          "<div class='capacity-label'>" + joined + " / " + room.teamCount + " teams seated</div></div>" +
+        "</div>" +
+        "<div class='room-actions'>" +
+          "<button class='primary join-button'>" + (isLive ? "Spectate" : "Join") + "</button>" +
+          "<button class='copy-link-button'>🔗 Copy Link</button>" +
+        "</div>";
+
+      card.querySelector(".join-button").onclick = function () {
+        Sound.unlock();
+        window.location.href = "/room.html?id=" + encodeURIComponent(room.id);
+      };
+
+      card.querySelector(".copy-link-button").onclick = function () {
+        copyText(inviteLink(room), "Invite link copied");
+      };
+
+      roomListEl.appendChild(card);
+    });
+  }
+
+  /* ---------- create ---------- */
+
+  document.getElementById("createRoomForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const errBox = document.getElementById("createFormError");
+    const btn = document.getElementById("createRoomButton");
+    errBox.textContent = "";
+    btn.disabled = true;
+
+    try {
+      const res = await fetch("/api/rooms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-User-Id": user.id,
+          "X-Username": user.name
+        },
+        body: JSON.stringify({
+          name: document.getElementById("roomName").value,
+          teamCount: Number(document.getElementById("teamCount").value),
+          allowCustomTeams: document.getElementById("allowCustomTeams").checked,
+          mode: document.getElementById("auctionMode").value,
+          botsEnabled: document.getElementById("botsEnabled").checked
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Could not create room.");
+
+      Sound.sold();
+      showToast("Room created. Code: " + formatCode(data.code), "success");
+
+      setTimeout(function () {
+        window.location.href = "/room.html?id=" + encodeURIComponent(data.id);
+      }, 600);
+    } catch (err) {
+      errBox.textContent = err.message;
+      Sound.error();
+      showToast(err.message, "error");
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  loadRooms();
+  setInterval(loadRooms, 4000);
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+{
+  "rules": {
+    "totalPurseCrores": 120,
+    "maxSquad": 25,
+    "minSquad": 18,
+    "maxOverseas": 8,
+    "playingXIOverseasMax": 4
+  },
+  "franchises": {
+    "mi": {
+      "spent": 750000000,
+      "remainingPurse": 450000000,
+      "rtmCards": 1,
+      "retainedPlayers": [
+        { "id": "jasprit-bumrah", "name": "Jasprit Bumrah", "price": 180000000, "uncapped": false, "role": "bowler" },
+        { "id": "suryakumar-yadav", "name": "Suryakumar Yadav", "price": 163500000, "uncapped": false, "role": "batter" },
+        { "id": "hardik-pandya", "name": "Hardik Pandya", "price": 163500000, "uncapped": false, "role": "all_rounder" },
+        { "id": "rohit-sharma", "name": "Rohit Sharma", "price": 163000000, "uncapped": false, "role": "batter" },
+        { "id": "tilak-varma", "name": "Tilak Varma", "price": 80000000, "uncapped": false, "role": "batter" }
+      ]
+    },
+    "csk": {
+      "spent": 650000000,
+      "remainingPurse": 550000000,
+      "rtmCards": 1,
+      "retainedPlayers": [
+        { "id": "ruturaj-gaikwad", "name": "Ruturaj Gaikwad", "price": 180000000, "uncapped": false, "role": "batter" },
+        { "id": "ravindra-jadeja", "name": "Ravindra Jadeja", "price": 180000000, "uncapped": false, "role": "all_rounder" },
+        { "id": "matheesha-pathirana", "name": "Matheesha Pathirana", "price": 130000000, "uncapped": false, "overseas": true, "role": "bowler" },
+        { "id": "shivam-dube", "name": "Shivam Dube", "price": 120000000, "uncapped": false, "role": "all_rounder" },
+        { "id": "ms-dhoni", "name": "MS Dhoni", "price": 40000000, "uncapped": true, "role": "wicketkeeper_batter" }
+      ]
+    },
+    "rcb": {
+      "spent": 370000000,
+      "remainingPurse": 830000000,
+      "rtmCards": 3,
+      "retainedPlayers": [
+        { "id": "virat-kohli", "name": "Virat Kohli", "price": 210000000, "uncapped": false, "role": "batter" },
+        { "id": "rajat-patidar", "name": "Rajat Patidar", "price": 110000000, "uncapped": false, "role": "batter" },
+        { "id": "yash-dayal", "name": "Yash Dayal", "price": 50000000, "uncapped": true, "role": "bowler" }
+      ]
+    },
+    "kkr": {
+      "spent": 690000000,
+      "remainingPurse": 510000000,
+      "rtmCards": 0,
+      "retainedPlayers": [
+        { "id": "rinku-singh", "name": "Rinku Singh", "price": 130000000, "uncapped": false, "role": "batter" },
+        { "id": "varun-chakravarthy", "name": "Varun Chakravarthy", "price": 120000000, "uncapped": false, "role": "bowler" },
+        { "id": "sunil-narine", "name": "Sunil Narine", "price": 120000000, "uncapped": false, "overseas": true, "role": "all_rounder" },
+        { "id": "andre-russell", "name": "Andre Russell", "price": 120000000, "uncapped": false, "overseas": true, "role": "all_rounder" },
+        { "id": "harshit-rana", "name": "Harshit Rana", "price": 40000000, "uncapped": true, "role": "bowler" },
+        { "id": "ramandeep-singh", "name": "Ramandeep Singh", "price": 40000000, "uncapped": true, "role": "all_rounder" }
+      ]
+    },
+    "srh": {
+      "spent": 750000000,
+      "remainingPurse": 450000000,
+      "rtmCards": 1,
+      "retainedPlayers": [
+        { "id": "heinrich-klaasen", "name": "Heinrich Klaasen", "price": 230000000, "uncapped": false, "overseas": true, "role": "wicketkeeper_batter" },
+        { "id": "pat-cummins", "name": "Pat Cummins", "price": 180000000, "uncapped": false, "overseas": true, "role": "all_rounder" },
+        { "id": "abhishek-sharma", "name": "Abhishek Sharma", "price": 140000000, "uncapped": false, "role": "all_rounder" },
+        { "id": "travis-head", "name": "Travis Head", "price": 140000000, "uncapped": false, "overseas": true, "role": "batter" },
+        { "id": "nitish-kumar-reddy", "name": "Nitish Kumar Reddy", "price": 60000000, "uncapped": false, "role": "all_rounder" }
+      ]
+    },
+    "rr": {
+      "spent": 790000000,
+      "remainingPurse": 410000000,
+      "rtmCards": 0,
+      "retainedPlayers": [
+        { "id": "sanju-samson", "name": "Sanju Samson", "price": 180000000, "uncapped": false, "role": "wicketkeeper_batter" },
+        { "id": "yashasvi-jaiswal", "name": "Yashasvi Jaiswal", "price": 180000000, "uncapped": false, "role": "batter" },
+        { "id": "riyan-parag", "name": "Riyan Parag", "price": 140000000, "uncapped": false, "role": "all_rounder" },
+        { "id": "dhruv-jurel", "name": "Dhruv Jurel", "price": 140000000, "uncapped": false, "role": "wicketkeeper_batter" },
+        { "id": "shimron-hetmyer", "name": "Shimron Hetmyer", "price": 110000000, "uncapped": false, "overseas": true, "role": "batter" },
+        { "id": "sandeep-sharma", "name": "Sandeep Sharma", "price": 40000000, "uncapped": true, "role": "bowler" }
+      ]
+    },
+    "dc": {
+      "spent": 470000000,
+      "remainingPurse": 730000000,
+      "rtmCards": 2,
+      "retainedPlayers": [
+        { "id": "axar-patel", "name": "Axar Patel", "price": 165000000, "uncapped": false, "role": "all_rounder" },
+        { "id": "kuldeep-yadav", "name": "Kuldeep Yadav", "price": 132500000, "uncapped": false, "role": "bowler" },
+        { "id": "tristan-stubbs", "name": "Tristan Stubbs", "price": 100000000, "uncapped": false, "overseas": true, "role": "wicketkeeper_batter" },
+        { "id": "abishek-porel", "name": "Abishek Porel", "price": 40000000, "uncapped": true, "role": "wicketkeeper_batter" }
+      ]
+    },
+    "pbks": {
+      "spent": 95000000,
+      "remainingPurse": 1105000000,
+      "rtmCards": 4,
+      "retainedPlayers": [
+        { "id": "shashank-singh", "name": "Shashank Singh", "price": 55000000, "uncapped": true, "role": "batter" },
+        { "id": "prabhsimran-singh", "name": "Prabhsimran Singh", "price": 40000000, "uncapped": true, "role": "wicketkeeper_batter" }
+      ]
+    },
+    "lsg": {
+      "spent": 510000000,
+      "remainingPurse": 690000000,
+      "rtmCards": 1,
+      "retainedPlayers": [
+        { "id": "nicholas-pooran", "name": "Nicholas Pooran", "price": 210000000, "uncapped": false, "overseas": true, "role": "wicketkeeper_batter" },
+        { "id": "ravi-bishnoi", "name": "Ravi Bishnoi", "price": 110000000, "uncapped": false, "role": "bowler" },
+        { "id": "mayank-yadav", "name": "Mayank Yadav", "price": 110000000, "uncapped": false, "role": "bowler" },
+        { "id": "mohsin-khan", "name": "Mohsin Khan", "price": 40000000, "uncapped": true, "role": "bowler" },
+        { "id": "ayush-badoni", "name": "Ayush Badoni", "price": 40000000, "uncapped": true, "role": "all_rounder" }
+      ]
+    },
+    "gt": {
+      "spent": 510000000,
+      "remainingPurse": 690000000,
+      "rtmCards": 1,
+      "retainedPlayers": [
+        { "id": "rashid-khan", "name": "Rashid Khan", "price": 180000000, "uncapped": false, "overseas": true, "role": "all_rounder" },
+        { "id": "shubman-gill", "name": "Shubman Gill", "price": 165000000, "uncapped": false, "role": "batter" },
+        { "id": "sai-sudharsan", "name": "Sai Sudharsan", "price": 85000000, "uncapped": false, "role": "batter" },
+        { "id": "rahul-tewatia", "name": "Rahul Tewatia", "price": 40000000, "uncapped": true, "role": "all_rounder" },
+        { "id": "shahrukh-khan", "name": "Shahrukh Khan", "price": 40000000, "uncapped": true, "role": "all_rounder" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "mi",
+    "name": "Mumbai Indians",
+    "short": "MI",
+    "color": "#004BA3",
+    "secondaryColor": "#D1AB3E",
+    "logo": "/img/teams/mi.png",
+    "venue": "Wankhede Stadium, Mumbai",
+    "pitchType": "bouncy_chasing",
+    "personality": "aggressive_pace",
+    "targetArchetypes": ["express_pacer", "death_finisher", "powerplay_aggressor"]
+  },
+  {
+    "id": "csk",
+    "name": "Chennai Super Kings",
+    "short": "CSK",
+    "color": "#F9CD05",
+    "secondaryColor": "#0081E9",
+    "logo": "/img/teams/csk.png",
+    "venue": "MA Chidambaram Stadium, Chennai",
+    "pitchType": "spin_friendly",
+    "personality": "tactical_experience",
+    "targetArchetypes": ["spin_all_rounder", "finger_spinner", "anchor", "death_bowler"]
+  },
+  {
+    "id": "rcb",
+    "name": "Royal Challengers Bengaluru",
+    "short": "RCB",
+    "color": "#DA1818",
+    "secondaryColor": "#000000",
+    "logo": "/img/teams/rcb.png",
+    "venue": "M. Chinnaswamy Stadium, Bengaluru",
+    "pitchType": "batting_paradise",
+    "personality": "star_heavy_intent",
+    "targetArchetypes": ["power_hitter", "top_order", "death_yorker_bowler"]
+  },
+  {
+    "id": "kkr",
+    "name": "Kolkata Knight Riders",
+    "short": "KKR",
+    "color": "#3A225D",
+    "secondaryColor": "#ECC542",
+    "logo": "/img/teams/kkr.png",
+    "venue": "Eden Gardens, Kolkata",
+    "pitchType": "balanced_bounce",
+    "personality": "unorthodox_spin",
+    "targetArchetypes": ["mystery_spinner", "finisher", "utility_all_rounder"]
+  },
+  {
+    "id": "dc",
+    "name": "Delhi Capitals",
+    "short": "DC",
+    "color": "#17449B",
+    "secondaryColor": "#DD1F2D",
+    "logo": "/img/teams/dc.png",
+    "venue": "Arun Jaitley Stadium, New Delhi",
+    "pitchType": "flat_track",
+    "personality": "youth_allround",
+    "targetArchetypes": ["left_arm_wrist_spinner", "pace_all_rounder", "powerplay_aggressor"]
+  },
+  {
+    "id": "srh",
+    "name": "Sunrisers Hyderabad",
+    "short": "SRH",
+    "color": "#F26522",
+    "secondaryColor": "#000000",
+    "logo": "/img/teams/srh.png",
+    "venue": "Rajiv Gandhi Stadium, Hyderabad",
+    "pitchType": "highway_high_scoring",
+    "personality": "ultra_destructive",
+    "targetArchetypes": ["destructive_opener", "express_pacer", "spin_hitter"]
+  },
+  {
+    "id": "rr",
+    "name": "Rajasthan Royals",
+    "short": "RR",
+    "color": "#EA1A85",
+    "secondaryColor": "#254AA5",
+    "logo": "/img/teams/rr.png",
+    "venue": "Sawai Mansingh Stadium, Jaipur",
+    "pitchType": "large_boundaries",
+    "personality": "classical_disciplined",
+    "targetArchetypes": ["strokeplay_anchor", "death_specialist", "wrist_spinner"]
+  },
+  {
+    "id": "pbks",
+    "name": "Punjab Kings",
+    "short": "PBKS",
+    "color": "#DD1F2D",
+    "secondaryColor": "#D9A83F",
+    "logo": "/img/teams/pbks.png",
+    "venue": "Maharaja Yadavindra Stadium, Mullanpur",
+    "pitchType": "pace_seam",
+    "personality": "heavy_purse_hunter",
+    "targetArchetypes": ["marquee_icon", "finisher", "swing_bowler"]
+  },
+  {
+    "id": "lsg",
+    "name": "Lucknow Super Giants",
+    "short": "LSG",
+    "color": "#00B7EB",
+    "secondaryColor": "#FF5B00",
+    "logo": "/img/teams/lsg.png",
+    "venue": "Ekana Cricket Stadium, Lucknow",
+    "pitchType": "slow_twopaced",
+    "personality": "grinder_economy",
+    "targetArchetypes": ["express_raw_pace", "spin_strangler", "clutch_anchor"]
+  },
+  {
+    "id": "gt",
+    "name": "Gujarat Titans",
+    "short": "GT",
+    "color": "#1B2133",
+    "secondaryColor": "#BA9342",
+    "logo": "/img/teams/gt.png",
+    "venue": "Narendra Modi Stadium, Ahmedabad",
+    "pitchType": "true_bounce_large",
+    "personality": "balanced_synergy",
+    "targetArchetypes": ["disciplined_seamer", "middle_over_stabilizer", "mystery_spinner"]
+  }
+]

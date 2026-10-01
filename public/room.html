@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Auction Yards — Room</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+
+<style>
+  .room-hero {
+    margin-top: 20px;
+    padding: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .room-hero-title { font-size: 28px; font-weight: 800; }
+  .room-hero-sub { color: var(--dim); font-size: 13px; margin-top: 6px; }
+
+  .banner {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    font-weight: 800;
+    font-family: "Sora", sans-serif;
+    font-size: 18px;
+    background: linear-gradient(120deg, rgba(16, 185, 129, 0.15), rgba(245, 158, 11, 0.15));
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: var(--green2);
+    animation: popIn 0.3s ease both;
+  }
+
+  /* ---------- room code panel ---------- */
+
+  .code-panel {
+    margin-top: 20px;
+    padding: 18px 22px;
+    border-radius: 18px;
+    border: 1px dashed rgba(245, 158, 11, 0.5);
+    background: linear-gradient(120deg, rgba(245, 158, 11, 0.08), rgba(139, 92, 246, 0.06));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: rise 0.4s ease both;
+  }
+
+  .code-label { font-size: 11px; letter-spacing: 1.2px; color: var(--gold2); font-weight: 700; }
+
+  .code-value {
+    font-family: "Sora", sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    margin-top: 4px;
+  }
+
+  /* ---------- teams ---------- */
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+  }
+
+  .team-card {
+    border: 1px solid var(--line);
+    background: rgba(2, 6, 23, 0.6);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    animation: rise 0.4s ease both;
+  }
+
+  .team-card:hover { transform: translateY(-3px); border-color: rgba(52, 211, 153, 0.4); }
+
+  .team-card.mine {
+    border-color: var(--green);
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+  }
+
+  .team-card.taken { opacity: 0.5; }
+
+  .team-logo {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    font-weight: 800;
+  }
+
+  .team-logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  .team-name { font-weight: 700; font-size: 14px; }
+  .team-owner { font-size: 12px; color: var(--dim); }
+  .team-card.mine .team-owner { color: var(--green2); font-weight: 700; }
+
+  .participant {
+    display: flex; justify-content: space-between; gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(2, 6, 23, 0.6);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .rule-box {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(2, 6, 23, 0.6);
+    text-align: center;
+  }
+
+  .rule-value { font-family: "Sora", sans-serif; font-size: 18px; font-weight: 800; color: var(--green2); }
+
+  .rule-label { color: var(--dim); font-size: 11px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  @media (max-width: 700px) {
+    .room-hero-title { font-size: 22px; }
+    .code-value { font-size: 24px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- ================= NAVBAR ================= -->
+  <div class="navbar">
+    <div>
+      <div class="brand">AUCTION YARDS</div>
+      <div class="tagline">Ten franchises. One yard. Zero mercy.</div>
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <button id="sfxBtn" title="Sound effects">🔊</button>
+      <button id="musicBtn" title="Music">🎵</button>
+
+      <div class="user-chip">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <span id="username"></span>
+      </div>
+
+      <button id="leaveButton" class="ghost">Back to Lobby</button>
+    </div>
+  </div>
+
+  <!-- ================= ROOM HERO ================= -->
+  <div class="panel room-hero">
+    <div>
+      <div class="room-hero-title" id="roomTitle">Loading room...</div>
+      <div class="room-hero-sub" id="roomSub"></div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <span class="badge dim" id="roomStatusBadge">SETUP</span>
+      <span class="badge gold" id="slotBadge"></span>
+    </div>
+  </div>
+
+  <!-- ================= ROOM CODE ================= -->
+  <div class="code-panel" id="codePanel" style="display:none;">
+    <div>
+      <div class="code-label">ROOM CODE — SHARE WITH FRIENDS</div>
+      <div class="code-value" id="codeValue">—</div>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="copyCodeBtn" class="gold">Copy Code</button>
+      <button id="copyLinkBtn" class="primary">Copy Invite Link</button>
+    </div>
+  </div>
+
+  <!-- ================= LIVE BANNER ================= -->
+  <div id="liveBanner" class="banner" style="display:none;">
+    AUCTION IS LIVE
+    <div id="auctionLinkWrap" style="margin-top:12px;"></div>
+  </div>
+
+  <!-- ================= MAIN GRID ================= -->
+  <div class="grid-2">
+
+    <div class="panel">
+      <h2 style="margin-bottom:14px;">Franchise Board</h2>
+      <div id="teamGrid" class="team-grid"></div>
+      <div id="customArea"></div>
+    </div>
+
+    <div class="side">
+
+      <div class="panel">
+        <h2 style="margin-bottom:12px;">Participants</h2>
+        <div id="participants"></div>
+      </div>
+
+      <div class="panel" id="myTeamPanel" style="display:none;">
+        <h2 style="margin-bottom:12px;">Your Franchise</h2>
+        <div id="myTeamInfo" style="margin-bottom:12px; font-weight:800; font-size:18px;"></div>
+        <button id="unclaimButton">Leave Team</button>
+      </div>
+
+      <div class="panel" id="hostPanel" style="display:none;">
+        <h2 style="margin-bottom:12px;">Host Controls</h2>
+        <p class="hint" style="margin-bottom:12px;">Start unlocks at 2+ teams seated.</p>
+        <button id="startButton" class="primary" disabled style="width:100%;">Start Auction</button>
+
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+          <label>Budget (100–150 crores)</label>
+          <select id="budgetSelect"></select>
+          <label>Timer (5–15 seconds)</label>
+          <select id="timerSelect"></select>
+          <button id="saveSettingsButton">Save Settings</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin-bottom:12px;">Room Rules</h2>
+        <div class="rules-grid">
+          <div class="rule-box">
+            <div class="rule-value" id="ruleBudget">120 Cr</div>
+            <div class="rule-label">Purse</div>
+          </div>
+          <div class="rule-box">
+            <div class="rule-value" id="ruleTimer">10s</div>
+            <div class="rule-label">Bid Timer</div>
+          </div>
+          <div class="rule-box">
+            <div class="rule-value">18</div>
+            <div class="rule-label">Squad Max</div>
+          </div>
+          <div class="rule-box">
+            <div class="rule-value">8</div>
+            <div class="rule-label">Overseas Max</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Auction Yards • Bid Bold. Build Legends. • Owner: <strong>NamanBhardwaj</strong></footer>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ================= CODE → ROOM RESOLVER ================= -->
+<script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const code = params.get("code");
+
+    if (!id && code) {
+      window.__resolvingCode = true;
+
+      fetch("/api/rooms/by-code/" + encodeURIComponent(code))
+        .then(function (r) { return r.json(); })
+        .then(function (room) {
+          if (room && room.id) {
+            window.location.replace("/room.html?id=" + encodeURIComponent(room.id));
+          } else {
+            window.location.replace("/home.html");
+          }
+        })
+        .catch(function () {
+          window.location.replace("/home.html");
+        });
+    }
+  })();
+</script>
+
+<script src="/sound.js"></script>
+<script>
+  if (!window.__resolvingCode) {
+    /* ================= GUARDS ================= */
+
+    const params = new URLSearchParams(window.location.search);
+    const roomId = params.get("id");
+    const rawUser = localStorage.getItem("auctionyards_user");
+
+    if (!rawUser) window.location.href = "/";
+    if (!roomId) window.location.href = "/home.html";
+
+    let user;
+    try { user = JSON.parse(rawUser); } catch (e) { window.location.href = "/"; }
+    if (!user || !user.id || !user.name) window.location.href = "/";
+
+    const headers = {
+      "Content-Type": "application/json",
+      "X-User-Id": user.id,
+      "X-Username": user.name
+    };
+
+    let TEAMS = [];
+    let room = null;
+
+    /* ================= ELEMENTS ================= */
+
+    const toastStack = document.getElementById("toastStack");
+
+    document.getElementById("username").textContent = user.name;
+    document.getElementById("userAvatar").textContent = user.name.charAt(0).toUpperCase();
+
+    document.getElementById("sfxBtn").onclick = function () {
+      this.textContent = Sound.toggleSfx() ? "🔊" : "🔇";
+    };
+
+    document.getElementById("musicBtn").onclick = function () {
+      Sound.unlock();
+      this.textContent = Sound.toggleMusic() ? "🎶" : "🎵";
+    };
+
+    document.getElementById("leaveButton").onclick = function () {
+      window.location.href = "/home.html";
+    };
+
+    /* ================= HELPERS ================= */
+
+    function showToast(message, type) {
+      const toast = document.createElement("div");
+      toast.className = "toast " + (type || "info");
+      toast.textContent = message;
+      toastStack.appendChild(toast);
+      setTimeout(function () {
+        toast.style.transition = "opacity 0.3s ease";
+        toast.style.opacity = "0";
+        setTimeout(function () { toast.remove(); }, 320);
+      }, 3000);
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function formatCode(code) {
+      if (!code) return "—";
+      const c = String(code);
+      return c.length === 6 ? c.slice(0, 3) + "-" + c.slice(3) : c;
+    }
+
+    function inviteLink() {
+      if (!room) return "";
+      return window.location.origin + "/room.html?code=" + encodeURIComponent(room.code);
+    }
+
+    function fallbackCopy(text, okMsg) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        showToast(okMsg, "success");
+      } catch (e) {
+        showToast("Copy failed", "error");
+      }
+      ta.remove();
+    }
+
+    function copyText(text, okMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(function () { showToast(okMsg, "success"); })
+          .catch(function () { fallbackCopy(text, okMsg); });
+      } else {
+        fallbackCopy(text, okMsg);
+      }
+    }
+
+    function allTeams() { return TEAMS.concat(room.customTeams || []); }
+
+    function teamById(id) {
+      return allTeams().find(function (t) { return t.id === id; });
+    }
+
+    function myClaim() {
+      return room.claims.find(function (c) { return c.userId === user.id; });
+    }
+
+    function claimForTeam(id) {
+      return room.claims.find(function (c) { return c.teamId === id; });
+    }
+
+    /* ================= API ================= */
+
+    async function post(url, body) {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body || {})
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Request failed.");
+      room = data;
+      render();
+    }
+
+    async function load() {
+      try {
+        const t = await fetch("/api/teams");
+        if (t.ok) TEAMS = await t.json();
+
+        const r = await fetch("/api/rooms/" + roomId, { headers: headers });
+        if (!r.ok) throw new Error("Room not found. Go back to lobby.");
+
+        room = await r.json();
+        render();
+      } catch (e) {
+        showToast(e.message, "error");
+        Sound.error();
+      }
+    }
+
+    /* ================= CODE PANEL ================= */
+
+    document.getElementById("copyCodeBtn").onclick = function () {
+      if (room) copyText(room.code, "Room code copied");
+    };
+
+    document.getElementById("copyLinkBtn").onclick = function () {
+      if (room) copyText(inviteLink(), "Invite link copied");
+    };
+
+    /* ================= RENDER ================= */
+
+      let modeText = "Start From Zero (Mega Auction)";
+      if (room.mode === "LEGENDS") modeText = "👑 Legends All-Time Auction";
+      else if (room.mode === "RETENTION_2025" || room.mode === "RTM") modeText = "🔥 2025 Real Retentions";
+
+      document.getElementById("roomTitle").textContent = room.name;
+      document.getElementById("roomSub").textContent =
+        "Host: " + room.createdBy + " • Mode: " + modeText + (room.botsEnabled ? " • 🤖 AI Bots Enabled" : "");
+
+      document.getElementById("roomStatusBadge").textContent = room.status;
+      document.getElementById("roomStatusBadge").className =
+        "badge " + (room.status === "LIVE" ? "green" : room.status === "SETUP" ? "gold" : "dim");
+
+      const iplClaimed = room.claims.filter(function (c) { return !c.custom; }).length;
+      document.getElementById("slotBadge").textContent = iplClaimed + "/" + room.teamCount + " Franchises";
+
+      const settings = room.settings || {};
+      document.getElementById("ruleBudget").textContent = (settings.budgetCrores || 120) + " Cr";
+      document.getElementById("ruleTimer").textContent = (settings.timerSeconds || 10) + "s";
+
+      /* code panel */
+      if (room.code) {
+        document.getElementById("codePanel").style.display = "flex";
+        document.getElementById("codeValue").textContent = formatCode(room.code);
+      }
+
+      /* live banner */
+      const live = room.status === "LIVE" || room.status === "COMPLETED";
+      document.getElementById("liveBanner").style.display = live ? "block" : "none";
+
+      const wrap = document.getElementById("auctionLinkWrap");
+      if (live && myClaim()) {
+        wrap.innerHTML =
+          '<a href="/auction.html?id=' + roomId + '"><button class="gold">Enter Live Auction ⚡</button></a>';
+      } else if (live) {
+        wrap.innerHTML = '<a href="/auction.html?id=' + roomId + '"><button class="gold">Spectate Live ⚡</button></a>';
+      } else {
+        wrap.innerHTML = "";
+      }
+
+      /* team grid */
+      const teamGrid = document.getElementById("teamGrid");
+      teamGrid.innerHTML = "";
+
+      TEAMS.forEach(function (team) {
+        const claim = claimForTeam(team.id);
+        const mine = claim && claim.userId === user.id;
+
+        const card = document.createElement("div");
+        card.className = "team-card" + (mine ? " mine" : claim ? " taken" : "");
+
+        const pitchLabel = team.pitchType ? team.pitchType.replace(/_/g, " ").toUpperCase() : "";
+
+        card.innerHTML =
+          "<div class='team-logo' style='background:" + team.color + "'>" +
+            "<img src='" + team.logo + "' onerror=\"this.style.display='none'\" />" +
+            "<span>" + team.short + "</span>" +
+          "</div>" +
+          "<div class='team-name'>" + team.name + "</div>" +
+          "<div style='font-size:11px; color:var(--cyan); margin-top:2px; font-weight:600;'>" + (team.venue ? team.venue.split(",")[0] : "") + "</div>" +
+          "<div class='team-owner' style='margin-top:6px;'>" +
+            (claim ? (mine ? "⭐ YOUR TEAM" : "Taken by " + escapeHtml(claim.username)) : (room.botsEnabled ? "Available (or CPU Bot)" : "Available")) +
+          "</div>";
+
+        if (!claim && room.status === "SETUP") {
+          const btn = document.createElement("button");
+          btn.className = "primary";
+          btn.textContent = "Select";
+          btn.style.marginTop = "8px";
+          btn.onclick = function () {
+            post("/api/rooms/" + roomId + "/claim", { teamId: team.id })
+              .then(function () {
+                Sound.sold();
+                showToast("You joined " + team.name + "!", "success");
+              })
+              .catch(function (e) {
+                Sound.error();
+                showToast(e.message, "error");
+              });
+          };
+          card.appendChild(btn);
+        }
+
+        teamGrid.appendChild(card);
+      });
+
+      /* custom area */
+      const customArea = document.getElementById("customArea");
+      customArea.innerHTML = "";
+      const mine = myClaim();
+
+      if (!mine && iplClaimed >= room.teamCount && room.status === "SETUP") {
+        if (room.allowCustomTeams) {
+          customArea.innerHTML =
+            "<div class='empty' style='margin-top:14px;'>All IPL slots are full. Custom teams allowed.<br/><br/>" +
+            "<button id='customJoin' class='gold'>Join as " + escapeHtml(user.name) + " XI</button></div>";
+
+          document.getElementById("customJoin").onclick = function () {
+            post("/api/rooms/" + roomId + "/add-custom-team", {})
+              .then(function () { showToast("Custom team created!", "success"); })
+              .catch(function (e) { showToast(e.message, "error"); });
+          };
+        } else {
+          customArea.innerHTML = "<div class='empty' style='margin-top:14px;'>All team slots are full in this room.</div>";
+        }
+      }
+
+      /* participants */
+      const participantsEl = document.getElementById("participants");
+      participantsEl.innerHTML = room.claims.length === 0
+        ? "<div class='empty'>No one has picked a team yet.</div>"
+        : room.claims.map(function (c) {
+            const t = teamById(c.teamId);
+            return "<div class='participant'><span>" + (t ? t.name : c.teamId) +
+              "</span><span style='color:var(--dim)'>" + escapeHtml(c.username) +
+              (c.username === room.createdBy ? " (HOST)" : "") + "</span></div>";
+          }).join("");
+
+      /* my team */
+      const myTeamPanel = document.getElementById("myTeamPanel");
+      if (mine) {
+        const t = teamById(mine.teamId);
+        myTeamPanel.style.display = "block";
+        document.getElementById("myTeamInfo").textContent = t ? t.name : mine.teamId;
+        document.getElementById("unclaimButton").style.display =
+          room.status === "SETUP" ? "inline-block" : "none";
+      } else {
+        myTeamPanel.style.display = "none";
+      }
+
+      /* host panel */
+      const hostPanel = document.getElementById("hostPanel");
+      if (room.createdById === user.id && room.status === "SETUP") {
+        hostPanel.style.display = "block";
+        const canStart = room.botsEnabled ? room.claims.length >= 1 : room.claims.length >= 2;
+        document.getElementById("startButton").disabled = !canStart;
+        if (room.botsEnabled && room.claims.length === 1) {
+          hostPanel.querySelector(".hint").textContent = "Ready! Empty slots will be filled by AI Franchise Bots 🤖";
+        } else {
+          hostPanel.querySelector(".hint").textContent = "Start unlocks with at least 2 teams seated.";
+        }
+        document.getElementById("budgetSelect").value = String(settings.budgetCrores || 120);
+        document.getElementById("timerSelect").value = String(settings.timerSeconds || 10);
+      } else {
+        hostPanel.style.display = "none";
+      }
+    }
+
+    /* ================= ACTIONS ================= */
+
+    document.getElementById("unclaimButton").onclick = function () {
+      post("/api/rooms/" + roomId + "/unclaim", {})
+        .then(function () { showToast("You left your team.", "info"); })
+        .catch(function (e) { showToast(e.message, "error"); });
+    };
+
+    document.getElementById("startButton").onclick = function () {
+      post("/api/rooms/" + roomId + "/start", {})
+        .then(function () {
+          Sound.next();
+          showToast("Auction started. Good luck!", "success");
+        })
+        .catch(function (e) {
+          Sound.error();
+          showToast(e.message, "error");
+        });
+    };
+
+    const budgetSelect = document.getElementById("budgetSelect");
+    const timerSelect = document.getElementById("timerSelect");
+    for (let b = 100; b <= 150; b += 5) budgetSelect.appendChild(new Option(b + " Crores", b));
+    for (let t = 5; t <= 15; t++) timerSelect.appendChild(new Option(t + " seconds", t));
+
+    document.getElementById("saveSettingsButton").onclick = function () {
+      post("/api/rooms/" + roomId + "/settings", {
+        budgetCrores: Number(budgetSelect.value),
+        timerSeconds: Number(timerSelect.value)
+      })
+        .then(function () { showToast("Settings saved.", "success"); })
+        .catch(function (e) { showToast(e.message, "error"); });
+    };
+
+    /* ================= BOOT ================= */
+
+    load();
+    setInterval(load, 3000);
+  }
+</script>
+</body>
+</html>
