@@ -2,5 +2,4 @@ node_modules/
 .DS_Store
 *.log
 npm-debug.log*
-data/auction_yards.db-shm
-data/auction_yards.db-wal
+data/*.db*
