@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/style.css" />
+<script src="/socket.io/socket.io.js"></script>
 
 <style>
   .room-hero {
@@ -309,6 +310,20 @@
     let TEAMS = [];
     let room = null;
 
+    /* ================= REAL-TIME SOCKET ================= */
+    if (typeof io !== "undefined") {
+      const socket = io();
+      socket.on("connect", function () {
+        socket.emit("join_room", { roomId: roomId, user: user });
+      });
+      socket.on("room_state", function (updatedRoom) {
+        if (updatedRoom && updatedRoom.id === roomId) {
+          room = updatedRoom;
+          render();
+        }
+      });
+    }
+
     /* ================= ELEMENTS ================= */
 
     const toastStack = document.getElementById("toastStack");
@@ -442,6 +457,9 @@
     };
 
     /* ================= RENDER ================= */
+
+    function render() {
+      if (!room) return;
 
       let modeText = "Start From Zero (Mega Auction)";
       if (room.mode === "LEGENDS") modeText = "👑 Legends All-Time Auction";

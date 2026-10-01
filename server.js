@@ -838,7 +838,7 @@ app.post(
 
     persistRooms();
     broadcastRoom(room.id);
-    res.json(room);
+    res.json(decorate(room));
   })
 );
 
@@ -851,7 +851,7 @@ app.post(
     room.claims = room.claims.filter((c) => c.userId !== user.id);
     persistRooms();
     broadcastRoom(room.id);
-    res.json(room);
+    res.json(decorate(room));
   })
 );
 
