@@ -681,7 +681,9 @@
   });
 
   loadRooms();
-  setInterval(loadRooms, 4000);
+  setInterval(function () {
+    if (!document.hidden) loadRooms();
+  }, 6000);
 </script>
 </body>
 </html>

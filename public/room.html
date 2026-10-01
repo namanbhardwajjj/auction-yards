@@ -415,8 +415,10 @@
 
     async function load() {
       try {
-        const t = await fetch("/api/teams");
-        if (t.ok) TEAMS = await t.json();
+        if (!TEAMS || TEAMS.length === 0) {
+          const t = await fetch("/api/teams");
+          if (t.ok) TEAMS = await t.json();
+        }
 
         const r = await fetch("/api/rooms/" + roomId, { headers: headers });
         if (!r.ok) throw new Error("Room not found. Go back to lobby.");
@@ -625,7 +627,9 @@
     /* ================= BOOT ================= */
 
     load();
-    setInterval(load, 3000);
+    setInterval(function () {
+      if (!document.hidden) load();
+    }, 4000);
   }
 </script>
 </body>

@@ -41,7 +41,10 @@ const io = new Server(server, {
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"), {
+  maxAge: "1d",
+  etag: true
+}));
 
 /* ============================================================
    FILE & DATABASE PERSISTENCE HELPERS
@@ -154,9 +157,29 @@ function modeDisplayName(mode) {
 let rooms = loadJSON("rooms.json", []);
 if (!Array.isArray(rooms)) rooms = [];
 
-function persistRooms() {
-  saveJSON("rooms.json", rooms);
+let roomsDirty = false;
+let isSavingRooms = false;
+
+function markRoomsDirty() {
+  roomsDirty = true;
 }
+
+function persistRooms() {
+  markRoomsDirty();
+}
+
+function flushRoomsAsync() {
+  if (!roomsDirty || isSavingRooms) return;
+  roomsDirty = false;
+  isSavingRooms = true;
+  const jsonStr = JSON.stringify(rooms);
+  fs.writeFile(path.join(__dirname, "data", "rooms.json"), jsonStr, "utf8", (err) => {
+    isSavingRooms = false;
+    if (err) console.error("Could not save rooms.json:", err.message);
+  });
+}
+
+setInterval(flushRoomsAsync, 4000);
 
 const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
@@ -487,7 +510,6 @@ function tick(room) {
 
 setInterval(function () {
   rooms.forEach(tick);
-  persistRooms();
 }, 1000);
 
 /* ============================================================
